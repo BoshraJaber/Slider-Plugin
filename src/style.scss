@@ -1,0 +1,89 @@
+@import "swiper/css";
+@import "swiper/css/a11y";
+@import "swiper/css/autoplay";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
+
+.wp-block-wpe-slider {
+	--swiper-theme-color: var(--wp--preset--color--accent, var(--wp--preset--color--primary));
+
+	--swiper-navigation-size: 23px;
+	--swiper-navigation-color:white;
+
+	--swiper-pagination-bullet-horizontal-gap: 7;
+	--swiper-pagination-bullet-vertical-gap: 0;
+	--swiper-pagination-bullet-size: 47px;
+	--swiper-pagination-bullet-opacity: 1;
+	--swiper-pagination-bullet-inactive-color: transparent;
+	--swiper-pagination-bullet-inactive-opacity: 1;
+}
+
+// Kafco Custom Styling
+.swiper-horizontal>.swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal, .swiper-pagination-custom, .swiper-pagination-fraction {
+    //  left: 100px !important;
+    right: auto;
+    width: -moz-fit-content;
+    width: fit-content !important;
+}
+
+.swiper-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet, .swiper-pagination-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+   margin: 0 7px !important;
+    width: 47px;
+    height: 15px;
+    border-radius: 20px;
+    border: 1px solid #FFFFFF;
+}
+
+.swiper-pagination-bullet-active{
+background: #157633 !important;
+}
+
+
+.swiper-pagination-horizontal{
+    order: 1 !important;
+    position: relative !important;
+    bottom: 77px !important;
+    left: 0px !important;
+	    margin-left: 100px !important;
+}
+
+.swiper-button-prev, .swiper-rtl .swiper-button-next{
+	    order: 2;
+    position: relative !important;
+    bottom: 57px;
+	    top: -55px !important;
+
+}
+.swiper-button-next, .swiper-rtl .swiper-button-prev {
+	order: 3;
+    position: relative !important;
+    bottom: 57px;
+	    top: -55px !important;
+	    left: 0px !important;
+    margin-left: 21px;
+}
+
+
+
+.swiper-wrapper{
+	width: 100% !important;
+    order: 0;
+}
+
+.swiper {
+	display: flex !important;
+    flex-wrap: wrap;
+	height: 100vh;
+
+}
+
+
+
+
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+    display: none !important;
+}
+
+.swiper-slide .wp-block-cover__inner-container{
+	margin-bottom: 124px !important;
+}
