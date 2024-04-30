@@ -2,7 +2,7 @@
 	"name": "slider-block",
 	"version": "0.1.2",
 	"description": "A slider carousel block for WordPress with SwiperJS.",
-	"author": "Damon Cook",
+	"author": "Boshra Jaber",
 	"license": "GPL-2.0-or-later",
 	"scripts": {
 		"build": "wp-scripts build",
