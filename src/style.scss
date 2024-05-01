@@ -87,3 +87,13 @@ background: #157633 !important;
 .swiper-slide .wp-block-cover__inner-container{
 	margin-bottom: 124px !important;
 }
+
+
+// Code Updates
+.swiper-slide, .swiper-slide .wp-block-cover__inner-container {
+    padding-left:0px;
+}
+
+.swiper-slide .wp-block-group {
+    margin-left:0px !important;
+}
