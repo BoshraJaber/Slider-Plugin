@@ -19,6 +19,10 @@
 		"pagination": {
 			"type": "boolean",
 			"default": true
+		},
+		"slidesPerView": {
+			"type": "number",
+			"default": 1
 		}
 	},
 	"example": {},

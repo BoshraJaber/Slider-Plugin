@@ -85,7 +85,7 @@ const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
 				autoplay: false,
 				grabCursor: false,
 				simulateTouch: false,
-				slidesPerView: slidesPerView ?? 1,
+				slidesPerView: slidesPerView,
 			},
 		};
 
