@@ -12,11 +12,14 @@
 $autoplay   = empty( $attributes['autoplay'] ) ? false : $attributes['autoplay'];
 $navigation = empty( $attributes['navigation'] ) ? false : $attributes['navigation'];
 $pagination = empty( $attributes['pagination'] ) ? false : $attributes['pagination'];
+$slidesPerView  = empty( $attributes['slidesPerView'] ) ? 1 : $attributes['slidesPerView'];
+
 
 $swiper_attr = array(
 	'autoplay'   => $autoplay,
 	'navigation' => $navigation,
 	'pagination' => $pagination,
+	'slidesPerView' => $slidesPerView,
 );
 $swiper_attr = htmlspecialchars( wp_json_encode( $swiper_attr ) );
 

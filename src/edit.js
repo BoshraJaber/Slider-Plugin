@@ -17,6 +17,7 @@ import {
 	PanelBody,
 	PanelRow,
 	ToggleControl,
+	RangeControl
 } from '@wordpress/components';
 import { useRefEffect } from '@wordpress/compose';
 import { useSelect, useDispatch, select, subscribe } from '@wordpress/data';
@@ -46,28 +47,28 @@ import PLACEHOLDER_IMG_3 from './assets/image3.jpg';
  *
  * @return {Element} Returns ToolbarGroup.
  */
-const SliderToolbar = ( { clientId } ) => {
-	const { insertBlock, selectBlock } = useDispatch( blockEditorStore );
+const SliderToolbar = ({ clientId }) => {
+	const { insertBlock, selectBlock } = useDispatch(blockEditorStore);
 	const innerBlocks = useSelect(
 		(
 			select // eslint-disable-line no-shadow
-		) => select( blockEditorStore ).getBlock( clientId ).innerBlocks
+		) => select(blockEditorStore).getBlock(clientId).innerBlocks
 	);
 
 	// Create a Slide block and insert it.
 	const addSlide = () => {
-		const block = createBlock( DEFAULT_BLOCK, {
-			url: `${ PLACEHOLDER_IMG_3 }`,
+		const block = createBlock(DEFAULT_BLOCK, {
+			url: `${PLACEHOLDER_IMG_3}`,
 			...DEFAULT_BLOCK_ATTRIBUTES,
-		} );
-		insertBlock( block, innerBlocks.length, clientId, false );
-		selectBlock( block.clientId );
+		});
+		insertBlock(block, innerBlocks.length, clientId, false);
+		selectBlock(block.clientId);
 	};
 
 	return (
 		<ToolbarGroup>
-			<ToolbarButton icon="plus" onClick={ addSlide }>
-				{ __( 'Add Slide', 'wpe' ) }
+			<ToolbarButton icon="plus" onClick={addSlide}>
+				{__('Add Slide', 'wpe')}
 			</ToolbarButton>
 		</ToolbarGroup>
 	);
@@ -76,32 +77,33 @@ const SliderToolbar = ( { clientId } ) => {
 /**
  * Slider component.
  */
-const Slider = memo( ( { clientId, attributes, innerBlocksProps } ) => {
-	const sliderRef = useRefEffect( ( element ) => {
+const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
+	const sliderRef = useRefEffect((element) => {
 		const options = {
 			...attributes,
 			...{
 				autoplay: false,
 				grabCursor: false,
 				simulateTouch: false,
+				slidesPerView: slidesPerView ?? 1,
 			},
 		};
 
 		// Initialize slider.
-		let slider = SwiperInit( element, options );
+		let slider = SwiperInit(element, options);
 
 		// Store the current slide order to detect changes, such as adding, removing, or reordering slides.
-		let slideOrder = select( blockEditorStore ).getBlockOrder( clientId );
+		let slideOrder = select(blockEditorStore).getBlockOrder(clientId);
 
 		// Subscribe slider update events like adding, removing, or reordering slides.
-		const unsubscribeSliderUpdateListener = subscribe( () => {
+		const unsubscribeSliderUpdateListener = subscribe(() => {
 			const currentSlidesOrder =
-				select( blockEditorStore ).getBlockOrder( clientId );
+				select(blockEditorStore).getBlockOrder(clientId);
 
 			// Check if the slider has been changed.
-			if ( currentSlidesOrder.toString() !== slideOrder.toString() ) {
+			if (currentSlidesOrder.toString() !== slideOrder.toString()) {
 				const selectedBlock =
-					select( blockEditorStore ).getSelectedBlock();
+					select(blockEditorStore).getSelectedBlock();
 				const slideAdded =
 					currentSlidesOrder.length > slideOrder.length;
 				const slideRemoved =
@@ -114,54 +116,54 @@ const Slider = memo( ( { clientId, attributes, innerBlocksProps } ) => {
 				slideOrder = currentSlidesOrder;
 				slider.destroy();
 
-				window.requestAnimationFrame( () => {
+				window.requestAnimationFrame(() => {
 					// Initialize slider.
-					slider = SwiperInit( element, options );
+					slider = SwiperInit(element, options);
 
 					// Determine where the slider should go.
 					let slideToIndex = activeIndex;
-					if ( slideAdded ) {
+					if (slideAdded) {
 						slideToIndex = slideOrder.length;
-					} else if ( slideRemoved ) {
+					} else if (slideRemoved) {
 						slideToIndex = activeIndex - 1;
-					} else if ( slideMoved ) {
+					} else if (slideMoved) {
 						slideToIndex = slideOrder.findIndex(
-							( clientId ) => clientId === selectedBlock.clientId // eslint-disable-line no-shadow
+							(clientId) => clientId === selectedBlock.clientId // eslint-disable-line no-shadow
 						);
 					}
 
-					if ( slideToIndex < 0 ) {
+					if (slideToIndex < 0) {
 						slideToIndex = 0;
 					}
 
-					slider.slideTo( slideToIndex, 0 );
-				} );
+					slider.slideTo(slideToIndex, 0);
+				});
 			}
-		} );
+		});
 
 		return () => {
 			unsubscribeSliderUpdateListener();
 			slider.destroy();
 		};
-	} );
+	});
 
 	return (
 		<>
 			<BlockControls>
-				<SliderToolbar clientId={ clientId } />
+				<SliderToolbar clientId={clientId} />
 			</BlockControls>
 
-			<div className="swiper" ref={ sliderRef }>
-				<div { ...innerBlocksProps } />
+			<div className="swiper" ref={sliderRef}>
+				<div {...innerBlocksProps} />
 			</div>
 
 			<ButtonBlockAppender
 				className="slider-appender has-icon"
-				rootClientId={ clientId }
+				rootClientId={clientId}
 			/>
 		</>
 	);
-} );
+});
 
 /**
  * The edit function describes the structure of your block in the context of the
@@ -175,8 +177,8 @@ const Slider = memo( ( { clientId, attributes, innerBlocksProps } ) => {
  *
  * @return {Element} Element to render.
  */
-export default function Edit( { attributes, setAttributes } ) {
-	const { autoplay, navigation, pagination } = attributes;
+export default function Edit({ attributes, setAttributes }) {
+	const { autoplay, navigation, pagination, slidesPerView } = attributes;
 	const { clientId } = useBlockEditContext();
 	const blockProps = useBlockProps();
 	// Our nested innerblocks that will be inserted by default.
@@ -187,7 +189,7 @@ export default function Edit( { attributes, setAttributes } ) {
 			defaultBlock: {
 				name: DEFAULT_BLOCK,
 				attributes: {
-					url: `${ PLACEHOLDER_IMG_3 }`,
+					url: `${PLACEHOLDER_IMG_3}`,
 					...DEFAULT_BLOCK_ATTRIBUTES,
 				},
 			},
@@ -197,14 +199,14 @@ export default function Edit( { attributes, setAttributes } ) {
 				[
 					DEFAULT_BLOCK,
 					{
-						url: `${ PLACEHOLDER_IMG_1 }`,
+						url: `${PLACEHOLDER_IMG_1}`,
 						...DEFAULT_BLOCK_ATTRIBUTES,
 					},
 					[
 						[
 							DEFAULT_INNERBLOCK,
 							{
-								placeholder: __( 'Slide title…', 'wpe' ),
+								placeholder: __('Slide title…', 'wpe'),
 								...DEFAULT_INNERBLOCK_ATTRIBUTES,
 							},
 						],
@@ -213,14 +215,14 @@ export default function Edit( { attributes, setAttributes } ) {
 				[
 					DEFAULT_BLOCK,
 					{
-						url: `${ PLACEHOLDER_IMG_2 }`,
+						url: `${PLACEHOLDER_IMG_2}`,
 						...DEFAULT_BLOCK_ATTRIBUTES,
 					},
 					[
 						[
 							DEFAULT_INNERBLOCK,
 							{
-								placeholder: __( 'Slide title…', 'wpe' ),
+								placeholder: __('Slide title…', 'wpe'),
 								...DEFAULT_INNERBLOCK_ATTRIBUTES,
 							},
 						],
@@ -233,52 +235,67 @@ export default function Edit( { attributes, setAttributes } ) {
 
 	return (
 		<>
-			<div { ...blockProps }>
+			<div {...blockProps}>
 				<Slider
-					clientId={ clientId }
-					attributes={ attributes }
-					innerBlocksProps={ innerBlocksProps }
+					clientId={clientId}
+					attributes={attributes}
+					innerBlocksProps={innerBlocksProps}
 				/>
 			</div>
 
 			<InspectorControls>
-				<PanelBody title={ __( 'Settings', 'wpe' ) }>
+				<PanelBody title={__('Settings', 'wpe')}>
+					<PanelRow>
+						<RangeControl
+							label={__('Slides Per View', 'wpe')}
+							value={slidesPerView}
+							onChange={(value) =>
+								setAttributes({ slidesPerView: value })
+							}
+							min={1}
+							max={10}
+							help={__(
+								'Number of slides to show per view.'
+							)}
+						/>
+					</PanelRow>
 					<PanelRow>
 						<ToggleControl
-							label={ __( 'Autoplay', 'wpe' ) }
-							checked={ autoplay }
-							onChange={ ( value ) =>
-								setAttributes( { autoplay: value } )
+							label={__('Autoplay', 'wpe')}
+							checked={autoplay}
+							onChange={(value) =>
+								setAttributes({ autoplay: value })
 							}
-							help={ __(
+							help={__(
 								'“Autoplay” will automatically advance the slides. Note: this is intentionally disabled in the editor, but will affect the front end.'
-							) }
+							)}
 						/>
 					</PanelRow>
 					<PanelRow>
 						<ToggleControl
-							label={ __( 'Navigation', 'wpe' ) }
-							checked={ navigation }
-							onChange={ ( value ) =>
-								setAttributes( { navigation: value } )
+							label={__('Navigation', 'wpe')}
+							checked={navigation}
+							onChange={(value) =>
+								setAttributes({ navigation: value })
 							}
-							help={ __(
+							help={__(
 								'“Navigation” will display arrows so user can navigate forward/backward.'
-							) }
+							)}
 						/>
 					</PanelRow>
 					<PanelRow>
 						<ToggleControl
-							label={ __( 'Pagination', 'wpe' ) }
-							checked={ pagination }
-							onChange={ ( value ) =>
-								setAttributes( { pagination: value } )
+							label={__('Pagination', 'wpe')}
+							checked={pagination}
+							onChange={(value) =>
+								setAttributes({ pagination: value })
 							}
-							help={ __(
+							help={__(
 								'“Pagination” will display dots along the bottom for user to click through slides.'
-							) }
+							)}
 						/>
 					</PanelRow>
+
 				</PanelBody>
 			</InspectorControls>
 		</>

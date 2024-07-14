@@ -4,7 +4,7 @@
  * @see https://swiperjs.com/get-started
  */
 import { Swiper } from 'swiper';
-import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules';
+import { Autoplay, Keyboard, Navigation, Pagination, Parallax, Grid } from 'swiper/modules';
 
 /**
  * Initialize the slider.
@@ -16,7 +16,7 @@ import { Autoplay, Keyboard, Navigation, Pagination } from 'swiper/modules';
  *
  * @see https://swiperjs.com/swiper-api#parameters
  */
-export function SwiperInit( container, options = {} ) {
+export function SwiperInit(container, options = {}) {
 	const parameters = {
 		autoplay: options?.autoplay ?? true,
 		centeredSlides: options?.centerSlides ?? false,
@@ -24,11 +24,13 @@ export function SwiperInit( container, options = {} ) {
 		grabCursor: options?.grabCursor ?? true,
 		initialSlide: 0,
 		keyboard: true,
-		modules: [ Autoplay, Keyboard, Navigation, Pagination ],
+		modules: [Autoplay, Keyboard, Navigation, Pagination, Parallax, Grid],
 		navigation: options?.navigation ?? false,
 		pagination: options?.pagination ?? false,
 		simulateTouch: options?.simulateTouch ?? true,
+		slidesPerView: options?.slidesPerView ?? 1,
+		spaceBetween: 50,
 	};
 
-	return new Swiper( container, parameters );
+	return new Swiper(container, parameters);
 }
