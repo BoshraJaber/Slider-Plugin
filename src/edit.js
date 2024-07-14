@@ -79,13 +79,14 @@ const SliderToolbar = ({ clientId }) => {
  */
 const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
 	const sliderRef = useRefEffect((element) => {
+		console.log("attributes inside edit.js", attributes)
 		const options = {
 			...attributes,
 			...{
 				autoplay: false,
 				grabCursor: false,
 				simulateTouch: false,
-				slidesPerView: slidesPerView,
+				slidesPerView: 1,
 			},
 		};
 
