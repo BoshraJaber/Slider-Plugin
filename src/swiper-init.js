@@ -29,7 +29,17 @@ export function SwiperInit(container, options = {}) {
 		pagination: options?.pagination ?? false,
 		simulateTouch: options?.simulateTouch ?? true,
 		slidesPerView: options?.slidesPerView ?? 1,
-		spaceBetween: 50,
+		spaceBetween: 40,
+		breakpoints: {
+			768: {
+				slidesPerView: 1,
+				spaceBetween: 20
+			},
+			1024: {
+				slidesPerView: 2,
+				spaceBetween: 30
+			}
+		}
 	};
 
 	return new Swiper(container, parameters);
