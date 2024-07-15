@@ -32,11 +32,11 @@ export function SwiperInit(container, options = {}) {
 		spaceBetween: 40,
 		breakpoints: {
 			768: {
-				slidesPerView: 1,
+				slidesPerView: options?.slidesPerViewSmall ?? 1,
 				spaceBetween: 20
 			},
 			1024: {
-				slidesPerView: 2,
+				slidesPerView: options?.slidesPerViewMedium ?? 1,
 				spaceBetween: 30
 			}
 		}

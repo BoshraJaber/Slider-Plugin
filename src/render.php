@@ -13,6 +13,8 @@ $autoplay   = empty( $attributes['autoplay'] ) ? false : $attributes['autoplay']
 $navigation = empty( $attributes['navigation'] ) ? false : $attributes['navigation'];
 $pagination = empty( $attributes['pagination'] ) ? false : $attributes['pagination'];
 $slidesPerView  = empty( $attributes['slidesPerView'] ) ? 1 : $attributes['slidesPerView'];
+$slidesPerViewSmall = empty( $attributes['slidesPerViewSmall'] ) ? 1 : $attributes['slidesPerViewSmall'];
+$slidesPerViewMedium = empty( $attributes['slidesPerViewMedium'] ) ? 1 : $attributes['slidesPerViewMedium'];
 
 
 $swiper_attr = array(
@@ -20,6 +22,16 @@ $swiper_attr = array(
 	'navigation' => $navigation,
 	'pagination' => $pagination,
 	'slidesPerView' => $slidesPerView,
+	'breakpoints'       => array(
+		'768' => array(
+			'slidesPerView' => $slidesPerViewSmall,
+			'spaceBetween'  => 20,
+		),
+		'1024' => array(
+			'slidesPerView' => $slidesPerViewMedium,
+			'spaceBetween'  => 30,
+		),
+	),
 );
 $swiper_attr = htmlspecialchars( wp_json_encode( $swiper_attr ) );
 

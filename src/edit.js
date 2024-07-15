@@ -87,6 +87,16 @@ const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
 				grabCursor: false,
 				simulateTouch: false,
 				slidesPerView: 1,
+				breakpoints: {
+					768: {
+						slidesPerView: attributes.slidesPerViewSmall ?? 1,
+						spaceBetween: 20
+					},
+					1024: {
+						slidesPerView: attributes.slidesPerViewMedium ?? 1,
+						spaceBetween: 30
+					}
+				}
 			},
 		};
 
@@ -179,7 +189,7 @@ const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
-	const { autoplay, navigation, pagination, slidesPerView } = attributes;
+	const { autoplay, navigation, pagination, slidesPerView, slidesPerViewSmall, slidesPerViewMedium } = attributes;
 	const { clientId } = useBlockEditContext();
 	const blockProps = useBlockProps();
 	// Our nested innerblocks that will be inserted by default.
@@ -258,6 +268,26 @@ export default function Edit({ attributes, setAttributes }) {
 							help={__(
 								'Number of slides to show per view.'
 							)}
+						/>
+					</PanelRow>
+					<PanelRow>
+						<RangeControl
+							label={__('Slides Per View (Small)', 'wpe')}
+							value={slidesPerViewSmall}
+							onChange={(value) => setAttributes({ slidesPerViewSmall: value })}
+							min={1}
+							max={10}
+							help={__('Number of slides to show per view on small screens (up to 768px).')}
+						/>
+					</PanelRow>
+					<PanelRow>
+						<RangeControl
+							label={__('Slides Per View (Medium)', 'wpe')}
+							value={slidesPerViewMedium}
+							onChange={(value) => setAttributes({ slidesPerViewMedium: value })}
+							min={1}
+							max={10}
+							help={__('Number of slides to show per view on medium screens (768px to 1024px).')}
 						/>
 					</PanelRow>
 					<PanelRow>
