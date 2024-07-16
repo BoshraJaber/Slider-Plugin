@@ -79,7 +79,7 @@ const SliderToolbar = ({ clientId }) => {
  */
 const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
 	const sliderRef = useRefEffect((element) => {
-		console.log("attributes inside edit.js", attributes)
+		console.log("attributes inside Slider", attributes)
 		const options = {
 			...attributes,
 			...{
@@ -189,6 +189,7 @@ const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
  * @return {Element} Element to render.
  */
 export default function Edit({ attributes, setAttributes }) {
+	console.log("attributes in edit funtion", attributes)
 	const { autoplay, navigation, pagination, slidesPerView, slidesPerViewSmall, slidesPerViewMedium } = attributes;
 	const { clientId } = useBlockEditContext();
 	const blockProps = useBlockProps();

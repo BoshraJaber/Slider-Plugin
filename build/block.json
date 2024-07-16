@@ -26,6 +26,14 @@
     "slidesPerView": {
       "type": "number",
       "default": 1
+    },
+    "slidesPerViewSmall": {
+      "type": "number",
+      "default": 1
+    },
+    "slidesPerViewMedium": {
+      "type": "number",
+      "default": 1
     }
   },
   "example": {},
