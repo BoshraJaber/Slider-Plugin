@@ -259,36 +259,39 @@ export default function Edit({ attributes, setAttributes }) {
 				<PanelBody title={__('Settings', 'wpe')}>
 					<PanelRow>
 						<RangeControl
-							label={__('Slides Per View', 'wpe')}
+							label={__('Slides Per View (Small)', 'wpe')}
+
 							value={slidesPerView}
 							onChange={(value) =>
 								setAttributes({ slidesPerView: value })
 							}
 							min={1}
 							max={10}
-							help={__(
-								'Number of slides to show per view.'
-							)}
-						/>
-					</PanelRow>
-					<PanelRow>
-						<RangeControl
-							label={__('Slides Per View (Small)', 'wpe')}
-							value={slidesPerViewSmall}
-							onChange={(value) => setAttributes({ slidesPerViewSmall: value })}
-							min={1}
-							max={10}
 							help={__('Number of slides to show per view on small screens (up to 768px).')}
+
+
 						/>
 					</PanelRow>
 					<PanelRow>
 						<RangeControl
 							label={__('Slides Per View (Medium)', 'wpe')}
+							value={slidesPerViewSmall}
+							onChange={(value) => setAttributes({ slidesPerViewSmall: value })}
+							min={1}
+							max={10}
+							help={__('Number of slides to show per view on medium screens (768px to 1024px).')}
+						/>
+					</PanelRow>
+					<PanelRow>
+						<RangeControl
+							label={__('Slides Per View', 'wpe')}
 							value={slidesPerViewMedium}
 							onChange={(value) => setAttributes({ slidesPerViewMedium: value })}
 							min={1}
 							max={10}
-							help={__('Number of slides to show per view on medium screens (768px to 1024px).')}
+							help={__(
+								'Number of slides to show per view.'
+							)}
 						/>
 					</PanelRow>
 					<PanelRow>
