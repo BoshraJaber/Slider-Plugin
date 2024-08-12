@@ -83,6 +83,12 @@ background: #157633 !important;
 .swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
     display: none !important;
 }
+.main-slider .swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled {
+    display: flex !important;
+	visibility: hidden !important;
+}
+
+
 
 .swiper-slide .wp-block-cover__inner-container{
 	margin-bottom: 124px !important;
