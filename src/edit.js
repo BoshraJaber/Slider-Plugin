@@ -257,7 +257,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 			<InspectorControls>
 				<PanelBody title={__('Settings', 'wpe')}>
-					<PanelRow>
+					<PanelRow className="hide-control">
 						<RangeControl
 							label={__('Slides Per View (Small)', 'wpe')}
 
@@ -272,7 +272,7 @@ export default function Edit({ attributes, setAttributes }) {
 
 						/>
 					</PanelRow>
-					<PanelRow>
+					<PanelRow className="hide-control">
 						<RangeControl
 							label={__('Slides Per View (Medium)', 'wpe')}
 							value={slidesPerViewSmall}
@@ -282,7 +282,7 @@ export default function Edit({ attributes, setAttributes }) {
 							help={__('Number of slides to show per view on medium screens (768px to 1024px).')}
 						/>
 					</PanelRow>
-					<PanelRow>
+					<PanelRow className="hide-control">
 						<RangeControl
 							label={__('Slides Per View', 'wpe')}
 							value={slidesPerViewMedium}
