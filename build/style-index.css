@@ -728,6 +728,12 @@ html[lang=ar] .sustainability-slider .swiper-wrapper {
 .historical-review .swiper-rtl .swiper-button-next:after {
   color: #455A64;
 }
+/* Operation Slider Pattern */
+.images-slider .swiper, .image-slider-item {
+  width: 377px;
+  height: 354px;
+  max-width: 377px !important;
+}
 .hide-control {
   display: none !important;
 }
