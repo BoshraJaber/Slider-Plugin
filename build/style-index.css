@@ -733,6 +733,7 @@ html[lang=ar] .sustainability-slider .swiper-wrapper {
   width: 377px;
   height: 354px;
   max-width: 377px !important;
+  border-radius: 90px 0px 90px 90px;
 }
 .images-slider .swiper-button-next.swiper-button-disabled, .images-slider .swiper-button-prev.swiper-button-disabled {
   visibility: visible !important;
@@ -753,6 +754,8 @@ html[lang=ar] .sustainability-slider .swiper-wrapper {
   padding: 10px;
   width: 35px;
   height: 36px;
+  background: rgba(0, 0, 0, 0.3) !important;
+  opacity: 1 !important;
 }
 .hide-control {
   display: none !important;
