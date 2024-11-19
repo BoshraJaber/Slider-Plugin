@@ -11,7 +11,11 @@
 
 $autoplay   = empty( $attributes['autoplay'] ) ? false : $attributes['autoplay'];
 $navigation = empty( $attributes['navigation'] ) ? false : $attributes['navigation'];
-$pagination = empty( $attributes['pagination'] ) ? false : $attributes['pagination'];
+// $pagination = empty( $attributes['pagination'] ) ? false : $attributes['pagination'];
+$pagination = empty( $attributes['pagination'] ) ? false : array(
+    'el'        => '.swiper-pagination',
+    'clickable' => true,
+);
 $slidesPerView  = empty( $attributes['slidesPerView'] ) ? 1 : $attributes['slidesPerView'];
 $slidesPerViewSmall = empty( $attributes['slidesPerViewSmall'] ) ? 1 : $attributes['slidesPerViewSmall'];
 $slidesPerViewMedium = empty( $attributes['slidesPerViewMedium'] ) ? 1 : $attributes['slidesPerViewMedium'];
@@ -49,5 +53,6 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	<div class="swiper-wrapper">
 		<?php echo $content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 	</div>
+	 <div class="swiper-pagination"></div>
 
 </div><!-- .swiper -->

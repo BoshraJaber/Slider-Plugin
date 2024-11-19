@@ -87,6 +87,9 @@ const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
 				grabCursor: false,
 				simulateTouch: false,
 				slidesPerView: 1,
+				pagination: {
+					clickable: true
+				},
 				breakpoints: {
 					768: {
 						slidesPerView: attributes.slidesPerViewSmall ?? 1,
