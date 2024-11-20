@@ -19,6 +19,7 @@ $pagination = empty( $attributes['pagination'] ) ? false : array(
 $slidesPerView  = empty( $attributes['slidesPerView'] ) ? 1 : $attributes['slidesPerView'];
 $slidesPerViewSmall = empty( $attributes['slidesPerViewSmall'] ) ? 1 : $attributes['slidesPerViewSmall'];
 $slidesPerViewMedium = empty( $attributes['slidesPerViewMedium'] ) ? 1 : $attributes['slidesPerViewMedium'];
+$speed = empty( $attributes['speed'] ) ? 3000 : $attributes['speed'];
 
 
 $swiper_attr = array(
@@ -28,6 +29,7 @@ $swiper_attr = array(
 	'slidesPerView' => $slidesPerView,
 	 'slidesPerViewSmall' => $slidesPerViewSmall,
     'slidesPerViewMedium' => $slidesPerViewMedium,
+	'speed' => $speed,
 	'breakpoints'       => array(
 		'768' => array(
 			'slidesPerView' => $slidesPerViewSmall,

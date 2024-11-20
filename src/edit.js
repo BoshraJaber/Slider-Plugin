@@ -87,7 +87,8 @@ const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
 				grabCursor: false,
 				simulateTouch: false,
 				slidesPerView: 1,
-				speed: 3000, // Transition speed in milliseconds
+				// speed: 3000, // Transition speed in milliseconds
+				speed: attributes?.speed ?? 3000,
 				pagination: {
 					clickable: true
 				},
@@ -274,6 +275,17 @@ export default function Edit({ attributes, setAttributes }) {
 							help={__('Number of slides to show per view on small screens (up to 768px).')}
 
 
+						/>
+					</PanelRow>
+					<PanelRow>
+						<RangeControl
+							label={__('Transition Speed (ms)', 'wpe')}
+							value={attributes.speed}
+							onChange={(value) => setAttributes({ speed: value })}
+							min={100}
+							max={10000}
+							step={100}
+							help={__('Set the transition speed for slides in milliseconds.')}
 						/>
 					</PanelRow>
 					<PanelRow className="hide-control">
