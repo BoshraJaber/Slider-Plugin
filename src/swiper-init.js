@@ -27,7 +27,8 @@ export function SwiperInit(container, options = {}) {
 		modules: [Autoplay, Keyboard, Navigation, Pagination, Parallax, Grid],
 		navigation: options?.navigation ?? false,
 		// speed: 3000, // Transition speed in milliseconds
-		speed: options?.speed ?? 3000, // Use updated speed value
+		speed: options?.speed ?? 3000,
+		loop: options?.loop ?? true,
 		// pagination: options?.pagination ?? false,
 		pagination: options.pagination ? { ...options.pagination, clickable: true } : false,
 		simulateTouch: options?.simulateTouch ?? true,
