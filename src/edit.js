@@ -87,6 +87,7 @@ const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
 				grabCursor: false,
 				simulateTouch: false,
 				slidesPerView: 1,
+				speed: 3000, // Transition speed in milliseconds
 				pagination: {
 					clickable: true
 				},

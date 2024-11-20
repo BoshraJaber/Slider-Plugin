@@ -34,6 +34,10 @@
     "slidesPerViewMedium": {
       "type": "number",
       "default": 1
+    },
+    "speed": {
+      "type": "number",
+      "default": 3000
     }
   },
   "example": {},
