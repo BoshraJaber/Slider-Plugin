@@ -26,22 +26,20 @@ export function SwiperInit(container, options = {}) {
 		keyboard: true,
 		modules: [Autoplay, Keyboard, Navigation, Pagination, Parallax, Grid],
 		navigation: options?.navigation ?? false,
-		// speed: 3000, // Transition speed in milliseconds
 		speed: options?.speed ?? 3000,
 		loop: options?.loop ?? true,
-		// pagination: options?.pagination ?? false,
 		pagination: options.pagination ? { ...options.pagination, clickable: true } : false,
 		simulateTouch: options?.simulateTouch ?? true,
 		slidesPerView: options?.slidesPerView ?? 1,
-		spaceBetween: 40,
+		spaceBetween: (options?.slidesPerView ?? 1) === 1 ? 0 : 40,
 		breakpoints: {
 			768: {
 				slidesPerView: options?.slidesPerViewSmall ?? 1,
-				spaceBetween: 20
+				spaceBetween: (options?.slidesPerView ?? 1) === 1 ? 0 : 20
 			},
 			1024: {
 				slidesPerView: options?.slidesPerViewMedium ?? 1,
-				spaceBetween: 30
+				spaceBetween: (options?.slidesPerView ?? 1) === 1 ? 0 : 30,
 			}
 		}
 	};
