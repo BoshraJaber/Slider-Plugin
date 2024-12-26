@@ -321,7 +321,7 @@ export default function Edit({ attributes, setAttributes }) {
 								setAttributes({ autoplay: value })
 							}
 							help={__(
-								'“ Example : Autoplay” will automatically advance the slides. Note: this is intentionally disabled in the editor, but will affect the front end.'
+								'“ Autoplay” will automatically advance the slides. Note: this is intentionally disabled in the editor, but will affect the front end.'
 							)}
 						/>
 					</PanelRow>
