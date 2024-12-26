@@ -77,6 +77,8 @@ const SliderToolbar = ({ clientId }) => {
 /**
  * Slider component.
  */
+
+
 const Slider = memo(({ clientId, attributes, innerBlocksProps }) => {
 	const sliderRef = useRefEffect((element) => {
 		console.log("attributes inside Slider", attributes)
